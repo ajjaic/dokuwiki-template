@@ -1,16 +1,7 @@
-{-module Lib-}
-    {-(-}
-    {-module CmdLineProcessing-}
-    {-) where-}
-
-
-{-import CmdLineProcessing-}
-
 module Lib
     (
-    someFunc
+    module CmdLineProcessing
     ) where
 
-import CmdLineProcessing
 
-someFunc = processCmdLine
+import CmdLineProcessing

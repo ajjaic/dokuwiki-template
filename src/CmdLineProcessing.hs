@@ -19,8 +19,8 @@ tempfilename = "./dokuwiki.template"
 options :: [OptDescr TemplateOpts]
 options = [
     Option "c" ["count"] (ReqArg (\s -> Count (read s :: Int)) "") "Count of required templates",
-    Option "h1" ["heading-level-1"] (NoArg H1) "Create Heading Level 1",
-    Option "h2" ["heading-level-2"] (NoArg H2) "Create Heading Level 2" ]
+    Option "1" ["heading-level-1"] (NoArg H1) "Create Heading Level 1",
+    Option "2" ["heading-level-2"] (NoArg H2) "Create Heading Level 2" ]
 
 processCmdLine :: IO ()
 processCmdLine = do
@@ -41,7 +41,7 @@ execute opts files = do
         else mapM_ (flip writeFile templatestring) files
 
 getCount :: [TemplateOpts] -> ([TemplateOpts], TemplateOpts)
-getCount o = let (opts, count) = partition helper o
+getCount o = let (count, opts) = partition helper o
               in (opts, head count)
     where
     helper (Count _) = True
