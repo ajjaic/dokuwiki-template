@@ -29,11 +29,10 @@ processCmdLine :: IO ()
 processCmdLine = do
     args <- getArgs
     let opts = getOpt RequireOrder options args
+        header = "Usage: dkwikitemp [OPTION...] files..."
     case opts of
         (o, no, []) -> execute o no
         (_, _, err) -> ioError (userError (mappend (mconcat err) $ usageInfo header options)) :: IO ()
-    where
-    header = "Usage: dkwikitemp [OPTION...] files..."
 
 
 execute :: [TemplateOpts] -> [FilePath] -> IO ()
